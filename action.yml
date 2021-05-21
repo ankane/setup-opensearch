@@ -1,0 +1,9 @@
+name: Setup OpenSearch
+inputs:
+  opensearch-version:
+    description: The OpenSearch version to download (if necessary) and use
+  plugins:
+    description: OpenSearch plugins to install
+runs:
+  using: node12
+  main: index.js
