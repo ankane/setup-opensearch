@@ -16,3 +16,4 @@ jobs:
         opensearch-version: ${{ matrix.opensearch-version }}
     - run: curl -s localhost:9200
     - run: which opensearch
+    - run: opensearch-plugin list
