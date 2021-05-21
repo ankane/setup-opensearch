@@ -33,7 +33,7 @@ function getVersion() {
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[67]\.\d{1,2}\.\d{1,2}(-beta\d)?$/.test(version)) {
+  if (!/^[1]\.\d{1,2}\.\d{1,2}(-beta\d)?$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
   return version;
