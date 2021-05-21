@@ -104,7 +104,7 @@ function startServer() {
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
-    run(path.join(esHome, 'opensearch-tar-install.sh'), '-d', '-E', 'discovery.type=single-node');
+    run(path.join(esHome, 'bin', 'opensearch'), '-d', '-E', 'opendistro_security.disabled=true', '-E', 'discovery.type=single-node');
   }
 }
 
