@@ -33,7 +33,7 @@ function getVersion() {
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[1]\.\d{1,2}\.\d{1,2}((-beta\d)|(-rc\d))?$/.test(version)) {
+  if (!/^[1]\.\d{1,2}\.\d{1,2}(-rc\d)?$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
   return version;
@@ -104,7 +104,7 @@ function startServer() {
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
-    run(path.join(esHome, 'bin', 'opensearch'), '-d', '-E', 'opendistro_security.disabled=true', '-E', 'discovery.type=single-node');
+    run(path.join(esHome, 'bin', 'opensearch'), '-d', '-E', 'opensearch_security.disabled=true', '-E', 'discovery.type=single-node');
   }
 }
 
