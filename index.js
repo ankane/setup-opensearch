@@ -69,9 +69,9 @@ function download() {
   }
   if (isWindows()) {
     // fix for: cross-device link not permitted
-    run('mv', `opensearch-${opensearchVersion}`, esHome)
+    run('mv', `opensearch-${opensearchVersion}`, opensearchHome)
   } else {
-    fs.renameSync(`opensearch-${opensearchVersion}`, esHome);
+    fs.renameSync(`opensearch-${opensearchVersion}`, opensearchHome);
   }
 }
 
@@ -90,7 +90,7 @@ function installPlugins() {
       }
     });
 
-    let pluginCmd = path.join(esHome, 'bin', 'opensearch-plugin');
+    let pluginCmd = path.join(opensearchHome, 'bin', 'opensearch-plugin');
     if (isWindows()) {
       pluginCmd += '.bat';
     }
@@ -100,11 +100,11 @@ function installPlugins() {
 
 function startServer() {
   if (isWindows()) {
-    const serviceCmd = path.join(esHome, 'bin', 'opensearch-service.bat');
+    const serviceCmd = path.join(opensearchHome, 'bin', 'opensearch-service.bat');
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
-    run(path.join(esHome, 'bin', 'opensearch'), '-d', '-E', 'plugins.security.disabled=true', '-E', 'discovery.type=single-node');
+    run(path.join(opensearchHome, 'bin', 'opensearch'), '-d', '-E', 'plugins.security.disabled=true', '-E', 'discovery.type=single-node');
   }
 }
 
@@ -121,9 +121,9 @@ function waitForReady() {
 
 const opensearchVersion = getVersion();
 const cacheDir = path.join(os.homedir(), 'opensearch');
-const esHome = path.join(cacheDir, opensearchVersion);
+const opensearchHome = path.join(cacheDir, opensearchVersion);
 
-if (!fs.existsSync(esHome)) {
+if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
   process.chdir(tmpDir);
   download();
@@ -136,5 +136,5 @@ startServer();
 
 waitForReady();
 
-addToEnv(`ES_HOME=${esHome}`);
-addToPath(path.join(esHome, 'bin'));
+addToEnv(`OPENSEARCH_HOME=${opensearchHome}`);
+addToPath(path.join(opensearchHome, 'bin'));
