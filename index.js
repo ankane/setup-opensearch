@@ -5,8 +5,8 @@ const path = require('path');
 const process = require('process');
 
 const versionMap = {
-  '1': '1.0.0-rc1',
-  '1.0': '1.0.0-rc1'
+  '1': '1.0.0',
+  '1.0': '1.0.0'
 };
 
 function run() {
@@ -33,7 +33,7 @@ function getVersion() {
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[1]\.\d{1,2}\.\d{1,2}(-rc\d)?$/.test(version)) {
+  if (!/^[1]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
   return version;
