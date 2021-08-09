@@ -1,6 +1,6 @@
 # setup-opensearch
 
-An experimental action for OpenSearch :tada:
+An action for OpenSearch :tada:
 
 - Simpler than containers
 - Works on Linux
