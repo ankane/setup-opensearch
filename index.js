@@ -5,8 +5,8 @@ const path = require('path');
 const process = require('process');
 
 const versionMap = {
-  '1': '1.0.0',
-  '1.0': '1.0.0'
+  '1': '1.0.1',
+  '1.0': '1.0.1'
 };
 
 function run() {
