@@ -14,6 +14,9 @@ jobs:
     - uses: ./.
       with:
         opensearch-version: ${{ matrix.opensearch-version }}
+        plugins: |
+          analysis-kuromoji
+          analysis-smartcn
     - run: curl -s localhost:9200
     - run: which opensearch
     - run: opensearch-plugin list
