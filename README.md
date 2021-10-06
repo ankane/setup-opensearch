@@ -26,7 +26,31 @@ Specify a version (defaults to the latest)
         opensearch-version: 1
 ```
 
-Supports major versions (`1`), minor versions (`1.0`, etc), and full versions (`1.0.0`, etc)
+Supports major versions (`1`), minor versions (`1.1`, etc), and full versions (`1.1.0`, etc)
+
+Test against multiple versions
+
+```yml
+    strategy:
+      matrix:
+        opensearch-version: [1.1, 1.0]
+    steps:
+    - uses: ankane/setup-opensearch@v1
+      with:
+        opensearch-version: ${{ matrix.opensearch-version }}
+```
+
+## Plugins
+
+Install plugins
+
+```yml
+    - uses: ankane/setup-opensearch@v1
+      with:
+        plugins: |
+          analysis-kuromoji
+          analysis-smartcn
+```
 
 ## Caching [experimental]
 
