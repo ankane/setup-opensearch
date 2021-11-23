@@ -6,22 +6,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04]
         opensearch-version: [1]
     steps:
     - uses: actions/checkout@v2
-    - if: ${{ matrix.os != 'ubuntu-18.04' }}
-      uses: ./.
+    - uses: ./.
       with:
         opensearch-version: ${{ matrix.opensearch-version }}
         plugins: |
           analysis-kuromoji
           analysis-smartcn
-    # https://github.com/opensearch-project/OpenSearch/issues/1591
-    - if: ${{ matrix.os == 'ubuntu-18.04' }}
-      uses: ./.
-      with:
-        opensearch-version: ${{ matrix.opensearch-version }}
     - run: curl -s localhost:9200
     - run: which opensearch
     - run: opensearch-plugin list
