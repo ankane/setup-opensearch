@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-20.04, macos-11]
         opensearch-version: [1]
     steps:
     - uses: actions/checkout@v2
