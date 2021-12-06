@@ -48,8 +48,7 @@ function isWindows() {
 function getUrl() {
   let url;
   if (process.platform == 'darwin') {
-    // TODO use Mac URL when available
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
+    url = `TODO`;
   } else if (isWindows()) {
     url = `TODO`;
   } else {
