@@ -77,6 +77,14 @@ function download() {
   }
 }
 
+// log4j
+function fixLog4j() {
+  const jvmOptionsPath = path.join(esHome, 'config', 'jvm.options');
+  if (!fs.readFileSync(jvmOptionsPath).includes('log4j2.formatMsgNoLookups')) {
+    fs.appendFileSync(jvmOptionsPath, '\n-Dlog4j2.formatMsgNoLookups=true\n');
+  }
+}
+
 function installPlugins() {
   let plugins = (process.env['INPUT_PLUGINS'] || '').trim();
   if (plugins.length > 0) {
@@ -129,9 +137,11 @@ if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
   process.chdir(tmpDir);
   download();
+  fixLog4j();
   installPlugins();
 } else {
   console.log('OpenSearch cached');
+  fixLog4j();
 }
 
 startServer();
