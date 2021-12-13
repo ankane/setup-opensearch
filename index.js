@@ -79,7 +79,7 @@ function download() {
 
 // log4j
 function fixLog4j() {
-  const jvmOptionsPath = path.join(esHome, 'config', 'jvm.options');
+  const jvmOptionsPath = path.join(opensearchHome, 'config', 'jvm.options');
   if (!fs.readFileSync(jvmOptionsPath).includes('log4j2.formatMsgNoLookups')) {
     fs.appendFileSync(jvmOptionsPath, '\n-Dlog4j2.formatMsgNoLookups=true\n');
   }
