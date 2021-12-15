@@ -84,8 +84,8 @@ function fixLog4j() {
     fs.appendFileSync(jvmOptionsPath, '\n-Dlog4j2.formatMsgNoLookups=true\n');
 
     // remove jndi for extra safety
-    const coreJarPath = fs.readdirSync(path.join(esHome, 'lib')).filter(fn => fn.includes('log4j-core-'))[0];
-    run('zip', '-q', '-d', path.join(esHome, 'lib', coreJarPath), 'org/apache/logging/log4j/core/lookup/JndiLookup.class');
+    const coreJarPath = fs.readdirSync(path.join(opensearchHome, 'lib')).filter(fn => fn.includes('log4j-core-'))[0];
+    run('zip', '-q', '-d', path.join(opensearchHome, 'lib', coreJarPath), 'org/apache/logging/log4j/core/lookup/JndiLookup.class');
   }
 }
 
