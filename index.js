@@ -79,6 +79,11 @@ function download() {
 
 // log4j
 function fixLog4j() {
+  // string comparison not ideal, but works for current versions
+  if (opensearchVersion >= '1.2.2') {
+    return;
+  }
+
   const jvmOptionsPath = path.join(opensearchHome, 'config', 'jvm.options');
   if (!fs.readFileSync(jvmOptionsPath).includes('log4j2.formatMsgNoLookups')) {
     fs.appendFileSync(jvmOptionsPath, '\n-Dlog4j2.formatMsgNoLookups=true\n');
