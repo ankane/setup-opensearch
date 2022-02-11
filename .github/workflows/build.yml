@@ -6,6 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # fails on other platforms
+        # see https://github.com/ankane/setup-opensearch/issues/1
         os: [ubuntu-20.04]
         opensearch-version: [1]
     steps:
