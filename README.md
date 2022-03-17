@@ -3,7 +3,7 @@
 An action for OpenSearch :tada:
 
 - Simpler than containers
-- Works on Linux
+- Works on Linux and Mac
 - Supports different versions
 
 [![Build Status](https://github.com/ankane/setup-opensearch/workflows/build/badge.svg?branch=v1)](https://github.com/ankane/setup-opensearch/actions)
