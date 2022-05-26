@@ -147,7 +147,9 @@ const opensearchVersion = getVersion();
 const cacheDir = path.join(os.homedir(), 'opensearch');
 const opensearchHome = path.join(cacheDir, opensearchVersion);
 
-const javaHome = process.env.JAVA_HOME_17_X64;
+// java compatibility
+// https://opensearch.org/docs/latest/opensearch/install/compatibility/
+const javaHome = process.env.JAVA_HOME_11_X64;
 process.env.OPENSEARCH_JAVA_HOME = javaHome;
 
 if (!fs.existsSync(opensearchHome)) {
