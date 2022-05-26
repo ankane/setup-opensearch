@@ -128,6 +128,7 @@ function startServer() {
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
+    process.env.OPENSEARCH_JAVA_HOME = process.env.JAVA_HOME_17_X64;
     run(path.join(opensearchHome, 'bin', 'opensearch'), '-d', '-E', 'plugins.security.disabled=true', '-E', 'discovery.type=single-node');
   }
 }
