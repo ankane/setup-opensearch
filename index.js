@@ -34,11 +34,11 @@ function addToPath(value) {
 }
 
 function getVersion() {
-  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '1';
+  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '2';
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[1]\.\d{1,2}\.\d{1,2}$/.test(version)) {
+  if (!/^[21]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
   return version;
