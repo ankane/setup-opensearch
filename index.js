@@ -34,7 +34,7 @@ function addToPath(value) {
 }
 
 function getVersion() {
-  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '1';
+  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '2';
   if (versionMap[version]) {
     version = versionMap[version];
   }
@@ -147,6 +147,11 @@ const opensearchVersion = getVersion();
 const cacheDir = path.join(os.homedir(), 'opensearch');
 const opensearchHome = path.join(cacheDir, opensearchVersion);
 
+// java compatibility
+// https://opensearch.org/docs/latest/opensearch/install/compatibility/
+const javaHome = process.env.JAVA_HOME_11_X64;
+process.env.OPENSEARCH_JAVA_HOME = javaHome;
+
 if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
   process.chdir(tmpDir);
@@ -163,4 +168,5 @@ startServer();
 waitForReady();
 
 addToEnv(`OPENSEARCH_HOME=${opensearchHome}`);
+addToEnv(`OPENSEARCH_JAVA_HOME=${javaHome}`);
 addToPath(path.join(opensearchHome, 'bin'));
