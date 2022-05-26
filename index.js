@@ -128,7 +128,6 @@ function startServer() {
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
-    process.env.OPENSEARCH_JAVA_HOME = process.env.JAVA_HOME_17_X64;
     run(path.join(opensearchHome, 'bin', 'opensearch'), '-d', '-E', 'plugins.security.disabled=true', '-E', 'discovery.type=single-node');
   }
 }
@@ -147,6 +146,8 @@ function waitForReady() {
 const opensearchVersion = getVersion();
 const cacheDir = path.join(os.homedir(), 'opensearch');
 const opensearchHome = path.join(cacheDir, opensearchVersion);
+
+process.env.OPENSEARCH_JAVA_HOME = process.env.JAVA_HOME_17_X64;
 
 if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
