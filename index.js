@@ -34,7 +34,7 @@ function addToPath(value) {
 }
 
 function getVersion() {
-  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '2';
+  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '1';
   if (versionMap[version]) {
     version = versionMap[version];
   }
