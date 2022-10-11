@@ -5,5 +5,5 @@ inputs:
   plugins:
     description: OpenSearch plugins to install
 runs:
-  using: node12
+  using: node16
   main: index.js
