@@ -18,6 +18,9 @@ jobs:
         plugins: |
           analysis-kuromoji
           analysis-smartcn
+        config: |
+          cluster.name: my-cluster
     - run: curl -s localhost:9200
+    - run: curl -s localhost:9200 | grep my-cluster
     - run: which opensearch
     - run: opensearch-plugin list

@@ -52,6 +52,17 @@ Install plugins
           analysis-smartcn
 ```
 
+## Options
+
+Set `opensearch.yml` config
+
+```yml
+    - uses: ankane/setup-opensearch@v1
+      with:
+        config: |
+          cluster.name: my-cluster
+```
+
 ## Caching [experimental]
 
 Add a step to your workflow **before** the `setup-opensearch` one

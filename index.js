@@ -125,6 +125,14 @@ function installPlugins() {
   }
 }
 
+function setConfig(dir) {
+  const config = process.env['INPUT_CONFIG'];
+  if (config) {
+    const file = path.join(dir, 'config', 'opensearch.yml');
+    fs.appendFileSync(file, config);
+  }
+}
+
 function startServer() {
   if (isWindows()) {
     const serviceCmd = path.join(opensearchHome, 'bin', 'opensearch-service.bat');
@@ -166,6 +174,7 @@ if (!fs.existsSync(opensearchHome)) {
   download();
   fixLog4j();
   installPlugins();
+  setConfig(opensearchHome);
 } else {
   console.log('OpenSearch cached');
   fixLog4j();

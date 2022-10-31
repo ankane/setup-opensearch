@@ -4,6 +4,8 @@ inputs:
     description: The OpenSearch version to download (if necessary) and use
   plugins:
     description: OpenSearch plugins to install
+  config:
+    description: Set config
 runs:
   using: node16
   main: index.js
