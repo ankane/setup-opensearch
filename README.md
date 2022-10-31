@@ -66,7 +66,7 @@ Set `opensearch.yml` config
 Add a step to your workflow **before** the `setup-opensearch` one
 
 ```yml
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ~/opensearch
         key: ${{ runner.os }}-opensearch-${{ matrix.opensearch-version }}
