@@ -176,13 +176,12 @@ if (!fs.existsSync(opensearchHome)) {
   download();
   fixLog4j();
   installPlugins();
-  setConfig(opensearchHome);
 } else {
   console.log('OpenSearch cached');
   fixLog4j();
-  setConfig(opensearchHome);
 }
 
+setConfig(opensearchHome);
 startServer();
 
 waitForReady();
