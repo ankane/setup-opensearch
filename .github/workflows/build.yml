@@ -6,10 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # fails on other platforms
-        # see https://github.com/ankane/setup-opensearch/issues/1
-        os: [ubuntu-22.04, ubuntu-20.04, ubuntu-18.04, macos-12, macos-11, macos-10.15]
-        opensearch-version: [2, 1]
+        os: [ubuntu-22.04]
+        opensearch-version: [2]
     steps:
     - uses: actions/checkout@v3
     - uses: ./.
@@ -20,7 +18,8 @@ jobs:
           analysis-smartcn
         config: |
           cluster.name: my-cluster
-    - run: curl -s localhost:9200
-    - run: curl -s localhost:9200 | grep my-cluster
+        port: 9201
+    - run: curl -s localhost:9201
+    - run: curl -s localhost:9201 | grep my-cluster
     - run: which opensearch
     - run: opensearch-plugin list

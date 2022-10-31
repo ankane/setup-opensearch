@@ -125,11 +125,15 @@ function installPlugins() {
   }
 }
 
+// important! ensure integer to prevent injection
+let port = parseInt(process.env['INPUT_PORT']);
+
 function setConfig(dir) {
   let config = process.env['INPUT_CONFIG'] || '';
   config += '\n';
   config += 'plugins.security.disabled: true\n';
   config += 'discovery.type: single-node\n';
+  config += `http.port: ${port}\n`;
 
   const file = path.join(dir, 'config', 'opensearch.yml');
   fs.appendFileSync(file, config);
@@ -148,7 +152,7 @@ function startServer() {
 function waitForReady() {
   console.log("Waiting for server to be ready");
   for (let i = 0; i < 30; i++) {
-    let ret = spawnSync('curl', ['-s', 'localhost:9200']);
+    let ret = spawnSync('curl', ['-s', `localhost:${port}`]);
     if (ret.status === 0) {
       break;
     }

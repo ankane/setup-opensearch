@@ -2,6 +2,9 @@ name: Setup OpenSearch
 inputs:
   opensearch-version:
     description: The OpenSearch version to download (if necessary) and use
+  port:
+    description: Set port
+    default: 9200
   plugins:
     description: OpenSearch plugins to install
   config:

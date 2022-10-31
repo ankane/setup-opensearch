@@ -42,6 +42,14 @@ Test against multiple versions
 
 ## Options
 
+Specify the port
+
+```yml
+    - uses: ankane/setup-opensearch@v1
+      with:
+        port: 9201
+```
+
 Install plugins
 
 ```yml
