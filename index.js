@@ -180,6 +180,7 @@ if (!fs.existsSync(opensearchHome)) {
 } else {
   console.log('OpenSearch cached');
   fixLog4j();
+  setConfig(opensearchHome);
 }
 
 startServer();
