@@ -40,7 +40,7 @@ Test against multiple versions
         opensearch-version: ${{ matrix.opensearch-version }}
 ```
 
-## Plugins
+## Options
 
 Install plugins
 
@@ -51,8 +51,6 @@ Install plugins
           analysis-kuromoji
           analysis-smartcn
 ```
-
-## Options
 
 Set `opensearch.yml` config
 
