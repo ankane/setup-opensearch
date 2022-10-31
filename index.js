@@ -126,11 +126,13 @@ function installPlugins() {
 }
 
 function setConfig(dir) {
-  const config = process.env['INPUT_CONFIG'];
-  if (config) {
-    const file = path.join(dir, 'config', 'opensearch.yml');
-    fs.appendFileSync(file, config);
-  }
+  let config = process.env['INPUT_CONFIG'] || '';
+  config += '\n';
+  config += 'plugins.security.disabled: true\n';
+  config += 'discovery.type: single-node\n';
+
+  const file = path.join(dir, 'config', 'opensearch.yml');
+  fs.appendFileSync(file, config);
 }
 
 function startServer() {
@@ -139,7 +141,7 @@ function startServer() {
     run(serviceCmd, 'install');
     run(serviceCmd, 'start');
   } else {
-    run(path.join(opensearchHome, 'bin', 'opensearch'), '-d', '-E', 'plugins.security.disabled=true', '-E', 'discovery.type=single-node');
+    run(path.join(opensearchHome, 'bin', 'opensearch'), '-d');
   }
 }
 
