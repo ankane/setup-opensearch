@@ -58,7 +58,7 @@ Set `opensearch.yml` config
     - uses: ankane/setup-opensearch@v1
       with:
         config: |
-          cluster.name: my-cluster
+          http.port: 9200
 ```
 
 ## Caching [experimental]

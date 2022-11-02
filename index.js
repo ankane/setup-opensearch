@@ -145,10 +145,16 @@ function startServer() {
   }
 }
 
+function getPort() {
+  const config = process.env['INPUT_CONFIG'] || '';
+  const match = config.match(/\bhttp\.port:\s+(\d{4,5})\b/);
+  return match ? parseInt(match[1]) : 9200;
+}
+
 function waitForReady() {
   console.log("Waiting for server to be ready");
   for (let i = 0; i < 30; i++) {
-    let ret = spawnSync('curl', ['-s', 'localhost:9200']);
+    let ret = spawnSync('curl', ['-s', `localhost:${getPort()}`]);
     if (ret.status === 0) {
       break;
     }
