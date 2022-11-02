@@ -147,7 +147,7 @@ function startServer() {
 
 function getPort() {
   const config = process.env['INPUT_CONFIG'] || '';
-  const match = config.match(/\bhttp\.port:\s+(\d{4,5})\b/);
+  const match = config.match(/\bhttp\.port: +(\d{4,5})\b/);
   return match ? parseInt(match[1]) : 9200;
 }
 
