@@ -132,7 +132,9 @@ function setConfig(dir) {
   config += 'discovery.type: single-node\n';
 
   const file = path.join(dir, 'config', 'opensearch.yml');
-  fs.appendFileSync(file, config);
+  // overwrite instead of append to play nicely with caching
+  // alternatively, could append to copy of original file
+  fs.writeFileSync(file, config);
 }
 
 function startServer() {
