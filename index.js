@@ -45,7 +45,7 @@ function getVersion() {
   if (!/^[21]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
-  if (parseFloat(version) < 2.4) {
+  if (isWindows() && parseFloat(version) < 2.4) {
     throw `OpenSearch version not supported on Windows (requires 2.4+)`;
   }
   return version;
