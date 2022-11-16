@@ -62,7 +62,7 @@ function getUrl() {
     // https://github.com/opensearch-project/opensearch-build/issues/38
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
   } else if (isWindows()) {
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/2.4.0/opensearch-2.4.0-windows-x64.zip`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-windows-x64.zip`;
   } else {
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
   }
