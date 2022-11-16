@@ -45,6 +45,9 @@ function getVersion() {
   if (!/^[21]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
+  if (parseFloat(version) < 2.4) {
+    throw `OpenSearch version not supported on Windows (requires 2.4+)`;
+  }
   return version;
 }
 
@@ -59,7 +62,7 @@ function getUrl() {
     // https://github.com/opensearch-project/opensearch-build/issues/38
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
   } else if (isWindows()) {
-    url = `TODO`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/2.4.0/opensearch-2.4.0-windows-x64.zip`;
   } else {
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
   }
@@ -177,6 +180,10 @@ const javaHome = process.env.JAVA_HOME_11_X64;
 if (javaHome) {
   process.env.OPENSEARCH_JAVA_HOME = javaHome;
   addToEnv(`OPENSEARCH_JAVA_HOME=${javaHome}`);
+
+  if (isWindows()) {
+    process.env.JAVA_HOME = javaHome;
+  }
 }
 
 if (!fs.existsSync(opensearchHome)) {

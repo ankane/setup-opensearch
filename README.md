@@ -3,7 +3,7 @@
 An action for OpenSearch :tada:
 
 - Simpler than containers
-- Works on Linux and Mac
+- Works on Linux, Mac, and Windows
 - Supports different versions
 
 [![Build Status](https://github.com/ankane/setup-opensearch/workflows/build/badge.svg?branch=v1)](https://github.com/ankane/setup-opensearch/actions)
@@ -26,7 +26,7 @@ Specify a version (defaults to the latest)
         opensearch-version: 2
 ```
 
-Supports major versions (`2`, `1`), minor versions (`2.3`, `1.3`, etc), and full versions (`2.3.0`, `1.3.6`, etc)
+Supports major versions (`2`, `1`), minor versions (`2.4`, `1.3`, etc), and full versions (`2.4.0`, `1.3.6`, etc), and Windows requires 2.4+
 
 Test against multiple versions
 
