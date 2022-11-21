@@ -13,7 +13,7 @@ An action for OpenSearch :tada:
 Add it as a step to your workflow
 
 ```yml
-    - uses: ankane/setup-opensearch@v1
+      - uses: ankane/setup-opensearch@v1
 ```
 
 ## Versions
@@ -21,9 +21,9 @@ Add it as a step to your workflow
 Specify a version (defaults to the latest)
 
 ```yml
-    - uses: ankane/setup-opensearch@v1
-      with:
-        opensearch-version: 2
+      - uses: ankane/setup-opensearch@v1
+        with:
+          opensearch-version: 2
 ```
 
 Supports major versions (`2`, `1`), minor versions (`2.4`, `1.3`, etc), and full versions (`2.4.0`, `1.3.6`, etc), and Windows requires 2.4+
@@ -35,9 +35,9 @@ Test against multiple versions
       matrix:
         opensearch-version: [2, 1]
     steps:
-    - uses: ankane/setup-opensearch@v1
-      with:
-        opensearch-version: ${{ matrix.opensearch-version }}
+      - uses: ankane/setup-opensearch@v1
+        with:
+          opensearch-version: ${{ matrix.opensearch-version }}
 ```
 
 ## Options
@@ -45,20 +45,20 @@ Test against multiple versions
 Install plugins
 
 ```yml
-    - uses: ankane/setup-opensearch@v1
-      with:
-        plugins: |
-          analysis-kuromoji
-          analysis-smartcn
+      - uses: ankane/setup-opensearch@v1
+        with:
+          plugins: |
+            analysis-kuromoji
+            analysis-smartcn
 ```
 
 Set `opensearch.yml` config
 
 ```yml
-    - uses: ankane/setup-opensearch@v1
-      with:
-        config: |
-          http.port: 9200
+      - uses: ankane/setup-opensearch@v1
+        with:
+          config: |
+            http.port: 9200
 ```
 
 ## Caching [experimental]
@@ -66,10 +66,10 @@ Set `opensearch.yml` config
 Add a step to your workflow **before** the `setup-opensearch` one
 
 ```yml
-    - uses: actions/cache@v3
-      with:
-        path: ~/opensearch
-        key: ${{ runner.os }}-opensearch-${{ matrix.opensearch-version }}
+      - uses: actions/cache@v3
+        with:
+          path: ~/opensearch
+          key: ${{ runner.os }}-opensearch-${{ matrix.opensearch-version }}
 ```
 
 ## Related Actions

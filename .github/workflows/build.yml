@@ -14,17 +14,17 @@ jobs:
           - os: windows-2019
             opensearch-version: 2
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./.
-      with:
-        opensearch-version: ${{ matrix.opensearch-version }}
-        plugins: |
-          analysis-kuromoji
-          analysis-smartcn
-        config: |
-          cluster.name: my-cluster
-          http.port: 9201
-    - run: curl -s localhost:9201
-    - run: curl -s localhost:9201 | grep my-cluster
-    - run: which opensearch
-    - run: opensearch-plugin list
+      - uses: actions/checkout@v3
+      - uses: ./.
+        with:
+          opensearch-version: ${{ matrix.opensearch-version }}
+          plugins: |
+            analysis-kuromoji
+            analysis-smartcn
+          config: |
+            cluster.name: my-cluster
+            http.port: 9201
+      - run: curl -s localhost:9201
+      - run: curl -s localhost:9201 | grep my-cluster
+      - run: which opensearch
+      - run: opensearch-plugin list
