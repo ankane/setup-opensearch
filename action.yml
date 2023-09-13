@@ -1,4 +1,5 @@
 name: Setup OpenSearch
+description: "It puts the OpenSearch on the Runner."
 inputs:
   opensearch-version:
     description: The OpenSearch version to download (if necessary) and use

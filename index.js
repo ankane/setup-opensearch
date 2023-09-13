@@ -65,11 +65,11 @@ function getUrl() {
   if (process.platform == 'darwin') {
     // TODO use Mac build when available
     // https://github.com/opensearch-project/opensearch-build/issues/38
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-${process.arch}.tar.gz`;
   } else if (isWindows()) {
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-windows-x64.zip`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-windows-${process.arch}.zip`;
   } else {
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-${process.arch}.tar.gz`;
   }
   return url;
 }
@@ -175,7 +175,7 @@ function waitForReady() {
 
 const opensearchVersion = getVersion();
 const cacheDir = path.join(os.homedir(), 'opensearch');
-const opensearchHome = path.join(cacheDir, opensearchVersion);
+const opensearchHome = path.join(cacheDir, opensearchVersion, process.arch);
 
 // java compatibility
 // https://opensearch.org/docs/latest/opensearch/install/compatibility/
