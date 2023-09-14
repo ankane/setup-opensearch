@@ -88,8 +88,10 @@ function download() {
   }
   if (isWindows()) {
     // fix for: cross-device link not permitted
+    run('mkdir', opensearchHome);
     run('mv', `opensearch-${opensearchVersion}`, opensearchHome)
   } else {
+    run('mkdir', '-p', opensearchHome);
     fs.renameSync(`opensearch-${opensearchVersion}`, opensearchHome);
   }
 }
