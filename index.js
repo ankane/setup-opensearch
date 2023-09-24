@@ -61,15 +61,20 @@ function isWindows() {
 }
 
 function getUrl() {
+  let arch = process.arch;
+  if (!['x64', 'arm64'].includes(arch)) {
+    throw `Unsupported architecture: ${arch}`;
+  }
+
   let url;
   if (process.platform == 'darwin') {
     // TODO use Mac build when available
     // https://github.com/opensearch-project/opensearch-build/issues/38
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-${arch}.tar.gz`;
   } else if (isWindows()) {
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-windows-x64.zip`;
   } else {
-    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-x64.tar.gz`;
+    url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-${arch}.tar.gz`;
   }
   return url;
 }
