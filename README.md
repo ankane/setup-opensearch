@@ -26,7 +26,7 @@ Specify a version (defaults to the latest)
           opensearch-version: 2
 ```
 
-Supports major versions (`2`, `1`), minor versions (`2.4`, `1.3`, etc), and full versions (`2.4.0`, `1.3.6`, etc), and Windows requires 2.4+
+Supports major versions (`2`, `1`), minor versions (`2.17`, `1.3`, etc), and full versions (`2.17.0`, `1.3.19`, etc), and Windows requires 2.4+
 
 Test against multiple versions
 
