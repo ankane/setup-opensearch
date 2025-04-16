@@ -150,6 +150,7 @@ function installPlugins() {
     plugins = plugins.split(/\s*[,\n]\s*/);
 
     // validate
+    // do not change without checking impact on runBat
     plugins.forEach( function(plugin) {
       if (!/^\w(\w|-)+$/.test(plugin)) {
         throw `Invalid plugin: ${plugin}`;
