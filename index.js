@@ -83,6 +83,10 @@ function getVersion() {
   return version;
 }
 
+function isMac() {
+  return process.platform == 'darwin';
+}
+
 function isWindows() {
   return process.platform == 'win32';
 }
@@ -94,7 +98,7 @@ function getUrl() {
   }
 
   let url;
-  if (process.platform == 'darwin') {
+  if (isMac()) {
     // TODO use Mac build when available
     // https://github.com/opensearch-project/opensearch-build/issues/38
     url = `https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearchVersion}/opensearch-${opensearchVersion}-linux-${arch}.tar.gz`;
