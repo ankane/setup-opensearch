@@ -236,7 +236,7 @@ if (!fs.existsSync(opensearchHome)) {
   process.chdir(tmpDir);
   download();
   fixLog4j();
-  installPlugins();
+  // installPlugins();
 } else {
   console.log('OpenSearch cached');
   fixLog4j();
