@@ -189,7 +189,8 @@ function startServer() {
   if (isWindows()) {
     const serviceCmd = path.join(opensearchHome, 'bin', 'opensearch-service.bat');
     runBat(serviceCmd, 'install');
-    runBat(serviceCmd, 'start');
+    // runBat(serviceCmd, 'start');
+    run('net', 'start', 'opensearch-service-x64');
   } else {
     run(path.join(opensearchHome, 'bin', 'opensearch'), '-d');
   }
