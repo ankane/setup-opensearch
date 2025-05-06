@@ -214,7 +214,8 @@ const opensearchHome = path.join(cacheDir, opensearchVersion);
 
 // java compatibility
 // https://opensearch.org/docs/latest/opensearch/install/compatibility/
-const javaHome = process.env.JAVA_HOME_11_X64;
+const majorVersion = parseInt(opensearchVersion.split('.')[0]);
+const javaHome = majorVersion == 3 ? process.env.JAVA_HOME_21_X64 : process.env.JAVA_HOME_11_X64;
 
 // not set on ubuntu-22.04, but defaults to Java 17
 if (javaHome) {
