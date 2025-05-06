@@ -226,9 +226,9 @@ if (javaHome) {
   process.env.OPENSEARCH_JAVA_HOME = javaHome;
   addToEnv(`OPENSEARCH_JAVA_HOME=${javaHome}`);
 
-  if (isWindows()) {
-    process.env.JAVA_HOME = javaHome;
-  }
+  // if (isWindows()) {
+  //   process.env.JAVA_HOME = javaHome;
+  // }
 }
 
 if (!fs.existsSync(opensearchHome)) {
