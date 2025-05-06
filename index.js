@@ -242,7 +242,7 @@ if (!fs.existsSync(opensearchHome)) {
   fixLog4j();
 }
 
-setConfig(opensearchHome);
+// setConfig(opensearchHome);
 startServer();
 
 waitForReady();
