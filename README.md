@@ -23,17 +23,17 @@ Specify a version (defaults to the latest)
 ```yml
       - uses: ankane/setup-opensearch@v1
         with:
-          opensearch-version: 2
+          opensearch-version: 3
 ```
 
-Supports major versions (`2`, `1`), minor versions (`2.17`, `1.3`, etc), and full versions (`2.17.0`, `1.3.19`, etc), and Windows requires 2.4+
+Supports major versions (`3`, `2`), minor versions (`3.0`, `2.19`, etc), and full versions (`3.0.0`, `2.19.1`, etc), and Windows requires 2.4+
 
 Test against multiple versions
 
 ```yml
     strategy:
       matrix:
-        opensearch-version: [2, 1]
+        opensearch-version: [3, 2]
     steps:
       - uses: ankane/setup-opensearch@v1
         with:
