@@ -77,7 +77,9 @@ function getVersion() {
   if (!/^[321]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
-  if (isWindows() && parseFloat(version) < 2.4) {
+  const majorVersion = parseInt(version);
+  const minorVersion = parseInt(version.split('.')[1]);
+  if (isWindows() && (majorVersion == 1 || (majorVersion == 2 && minorVersion < 4))) {
     throw `OpenSearch version not supported on Windows (requires 2.4+)`;
   }
   return version;
