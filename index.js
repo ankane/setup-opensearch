@@ -5,8 +5,10 @@ const path = require('path');
 const process = require('process');
 
 const versionMap = {
+  '3': '3.0.0',
   '2': '2.19.1',
   '1': '1.3.20',
+  '3.0': '3.0.0',
   '2.19': '2.19.1',
   '2.18': '2.18.0',
   '2.17': '2.17.0',
@@ -72,10 +74,10 @@ function getVersion() {
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[21]\.\d{1,2}\.\d{1,2}$/.test(version)) {
+  if (!/^[321]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
-  if (isWindows() && (version[0] == '1' || parseInt(version.split('.')[1]) < 4)) {
+  if (isWindows() && parseFloat(version) < 2.4) {
     throw `OpenSearch version not supported on Windows (requires 2.4+)`;
   }
   return version;
@@ -212,7 +214,7 @@ const opensearchHome = path.join(cacheDir, opensearchVersion);
 
 // java compatibility
 // https://opensearch.org/docs/latest/opensearch/install/compatibility/
-const javaHome = process.env.JAVA_HOME_11_X64;
+const javaHome = parseInt(opensearchVersion) == 3 ? process.env.JAVA_HOME_21_X64 : process.env.JAVA_HOME_11_X64;
 
 // not set on ubuntu-22.04, but defaults to Java 17
 if (javaHome) {
