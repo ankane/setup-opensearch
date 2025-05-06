@@ -226,10 +226,12 @@ if (javaHome) {
   process.env.OPENSEARCH_JAVA_HOME = javaHome;
   addToEnv(`OPENSEARCH_JAVA_HOME=${javaHome}`);
 
-  // if (isWindows()) {
-  //   process.env.JAVA_HOME = javaHome;
-  // }
+  if (isWindows()) {
+    process.env.JAVA_HOME = javaHome;
+  }
 }
+
+process.env.OPENSEARCH_HOME = opensearchHome;
 
 if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
