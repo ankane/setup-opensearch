@@ -6,19 +6,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04, ubuntu-22.04-arm, macos-15, macos-14, macos-13]
-        # opensearch-version: [3] # [2, 1]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04, ubuntu-22.04-arm, macos-15, macos-14, macos-13]
+        opensearch-version: [3, 2]
         include:
           # - os: windows-2025
           #   opensearch-version: 3
-          - os: windows-2022
-            opensearch-version: 3
+          - os: windows-2025
+            opensearch-version: 2
           # - os: windows-2022
-          #   opensearch-version: 2
+          #   opensearch-version: 3
+          - os: windows-2022
+            opensearch-version: 2
           # - os: windows-2019
           #   opensearch-version: 3
-          # - os: windows-2019
-          #   opensearch-version: 2
+          - os: windows-2019
+            opensearch-version: 2
     steps:
       - uses: actions/checkout@v4
       - uses: ./.

@@ -70,7 +70,7 @@ function addToPath(value) {
 }
 
 function getVersion() {
-  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '3';
+  let version = process.env['INPUT_OPENSEARCH-VERSION'] || '2';
   if (versionMap[version]) {
     version = versionMap[version];
   }
@@ -230,8 +230,6 @@ if (javaHome) {
     process.env.JAVA_HOME = javaHome;
   }
 }
-
-process.env.OPENSEARCH_HOME = opensearchHome;
 
 if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
