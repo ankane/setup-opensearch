@@ -13,8 +13,6 @@ jobs:
             opensearch-version: 2
           - os: windows-2022
             opensearch-version: 2
-          - os: windows-2019
-            opensearch-version: 2
     steps:
       - uses: actions/checkout@v4
       - uses: ./.
