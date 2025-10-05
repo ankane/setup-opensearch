@@ -30,11 +30,7 @@ const versionMap = {
   '2.3': '2.3.0',
   '2.2': '2.2.1',
   '2.1': '2.1.0',
-  '2.0': '2.0.1',
-  '1.3': '1.3.20',
-  '1.2': '1.2.4',
-  '1.1': '1.1.0',
-  '1.0': '1.0.1'
+  '2.0': '2.0.1'
 };
 
 function run() {
@@ -76,12 +72,12 @@ function getVersion() {
   if (versionMap[version]) {
     version = versionMap[version];
   }
-  if (!/^[321]\.\d{1,2}\.\d{1,2}$/.test(version)) {
+  if (!/^[32]\.\d{1,2}\.\d{1,2}$/.test(version)) {
     throw `OpenSearch version not supported: ${version}`;
   }
   const majorVersion = parseInt(version);
   const minorVersion = parseInt(version.split('.')[1]);
-  if (isWindows() && (majorVersion == 1 || (majorVersion == 2 && minorVersion < 4))) {
+  if (isWindows() && (majorVersion == 2 && minorVersion < 4)) {
     throw `OpenSearch version not supported on Windows (requires 2.4+)`;
   }
   return version;
@@ -127,23 +123,6 @@ function download() {
     run('mv', `opensearch-${opensearchVersion}`, opensearchHome)
   } else {
     fs.renameSync(`opensearch-${opensearchVersion}`, opensearchHome);
-  }
-}
-
-// log4j
-function fixLog4j() {
-  // string comparison not ideal, but works for current versions
-  if (opensearchVersion >= '1.2.2') {
-    return;
-  }
-
-  const jvmOptionsPath = path.join(opensearchHome, 'config', 'jvm.options');
-  if (!fs.readFileSync(jvmOptionsPath).includes('log4j2.formatMsgNoLookups')) {
-    fs.appendFileSync(jvmOptionsPath, '\n-Dlog4j2.formatMsgNoLookups=true\n');
-
-    // remove jndi for extra safety
-    const coreJarPath = fs.readdirSync(path.join(opensearchHome, 'lib')).filter(fn => fn.includes('log4j-core-'))[0];
-    run('zip', '-q', '-d', path.join(opensearchHome, 'lib', coreJarPath), 'org/apache/logging/log4j/core/lookup/JndiLookup.class');
   }
 }
 
@@ -234,11 +213,9 @@ if (!fs.existsSync(opensearchHome)) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'opensearch-'));
   process.chdir(tmpDir);
   download();
-  fixLog4j();
   installPlugins();
 } else {
   console.log('OpenSearch cached');
-  fixLog4j();
 }
 
 setConfig(opensearchHome);
