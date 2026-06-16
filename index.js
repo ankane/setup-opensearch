@@ -122,7 +122,8 @@ function download() {
   if (!fs.existsSync(cacheDir)) {
     fs.mkdirSync(cacheDir, {recursive: true});
   }
-  if (isWindows()) {
+  const image = process.env['ImageOS'];
+  if (isWindows() || image == 'ubuntu26' || image == 'ubuntu26-arm64') {
     // fix for: cross-device link not permitted
     run('mv', `opensearch-${opensearchVersion}`, opensearchHome)
   } else {
